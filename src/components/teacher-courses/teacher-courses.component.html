@@ -1,0 +1,32 @@
+<div class="courses-container">
+    @for(c of teacherCourses; track teacherCourses) {
+    <mat-card class="course-card">
+        <div class="card-header">
+            <button mat-icon-button color="primary" [routerLink]="['../updateCourse', c.id]" routerLinkActive="active">
+                <mat-icon>edit</mat-icon>
+            </button>
+            
+            <button mat-icon-button color="primary" (click)="moveLesson(c.id)">
+                all the lessons
+                <mat-icon>school</mat-icon>
+            </button>
+            <button mat-icon-button color="primary" (click)="deleteCourse(c.id)">
+              delete 
+                <mat-icon>delete</mat-icon>
+            </button>
+           
+        </div>
+        <h3>{{ c.title }}</h3>
+        <p>{{ c.description }}</p>
+
+        
+    </mat-card>
+    }
+
+    <div class="add-course-container">
+        <button mat-raised-button color="accent" routerLink="/menu/addCourse">
+            <mat-icon>add</mat-icon> New Course
+        </button>
+    </div>
+</div>
+

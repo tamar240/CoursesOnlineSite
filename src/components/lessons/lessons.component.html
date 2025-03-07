@@ -1,0 +1,37 @@
+@for(l of lessons;track lessons){
+    <div style="border: 2px solid rgb(253, 194, 213); margin: 30px;width: fit-content;padding: 20px;">
+    <h3>{{l.title}}</h3>
+    <p>{{l.content}}</p>
+    {{l.id}}
+    <button >edit</button>
+    <button (click)="deleteLesson(l.id)">delete</button>
+</div>
+}
+<button (click)="openForm=!openForm">add new lesson</button>
+@if(openForm)
+{
+    <form [formGroup]="lessonForm" (ngSubmit)="addLesson()">
+
+        <mat-form-field appearance="fill">
+            <mat-label>lesson name </mat-label>
+            <input matInput formControlName="title" required>
+            <!-- @if(lessonForm.get('title')?.hasError('required'))
+            { <mat-error>
+           course name is required
+            </mat-error>} -->
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+            <mat-label>content course </mat-label>
+            <textarea matInput formControlName="content" rows="3"></textarea>
+        </mat-form-field>
+
+        <div class="form-actions">
+            <button mat-raised-button color="primary" type="submit" >
+               add lesson
+            </button>
+        </div>
+    </form>
+
+
+}

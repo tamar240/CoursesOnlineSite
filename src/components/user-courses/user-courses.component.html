@@ -1,0 +1,14 @@
+@for (c of courses; track $index) {
+<mat-card>
+    <div class="course-card">
+        <h3>{{ c.title }}</h3>
+        <p>{{ c.description }}</p>
+        <p>teacher {{ c.teacherId }}</p>
+        <!-- need to see the mame -->
+    </div>
+    <!-- <button mat-button color="primary"  [routerLink]="['../course', c.id]">פרטים נוספים</button> -->
+     <!-- יש בעיה שאם אני שולחת לפרטים נוספים אז בחזרה הוא עובר לעמוד של כל הקורסים
+      אפשר אולי לשלוח משתנה בURL שהוא יגיד לי מאיפה באתי -->
+    <button style="width: 100px;" (click)="unenroll(c.id!)">leave crouse</button>
+</mat-card>
+}

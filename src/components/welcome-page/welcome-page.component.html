@@ -1,0 +1,13 @@
+
+<mat-card class="centered-card">
+
+        <h1>  welcome to-<span class="highlight">SmartCourse</span></h1>
+        <p>Start learning from the best at your own pace.</p>
+
+        @if(token=="" && !clickOnLogin)
+        { 
+        <button (click)="clickLogin()">login / register</button>
+        }
+
+
+</mat-card>

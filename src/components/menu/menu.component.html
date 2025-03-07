@@ -1,0 +1,32 @@
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #sidenav mode="side" opened>
+    <mat-toolbar> Menu </mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="showCourses" routerLinkActive="active"> All Our Courses</a>
+      @if(this.role=="teacher")
+      { <a mat-list-item routerLink="teacherCourse" routerLinkActive="active"> Your Courses</a>}
+      @if(this.role=="student"){
+      <a mat-list-item routerLink="yourCourse" routerLinkActive="active">Your Courses</a>
+      }
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button mat-icon-button (click)="sidenav.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+      <span class="toolbar-title">Learn. Succeed. Lead.</span>
+
+      <span class="spacer"></span>
+
+      <button mat-raised-button (click)="navigateToLoginout()">
+        Logout
+      </button>
+    </mat-toolbar>
+
+    <div class="content">
+      <router-outlet></router-outlet> 
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
