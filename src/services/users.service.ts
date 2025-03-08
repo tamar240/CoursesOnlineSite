@@ -27,26 +27,37 @@ export class UsersService {
   }
 
   saveUserData(userId: number, token: string,role:Role) {
+    if (typeof window!== 'undefined') {
     sessionStorage.setItem('userId', userId.toString());
     sessionStorage.setItem('token', token);
     sessionStorage.setItem('role', role);
+    }
   }
 
   getUserId(): number | null {
+    if (typeof window!== 'undefined') {
+      
+
     const userId = sessionStorage.getItem('userId');
-    return userId ? parseInt(userId, 10) : null;
+    return userId ? parseInt(userId, 10) : null;}
+    return null;
   }
 
   getToken(): string | null {
-    return sessionStorage.getItem('token');
+    if (typeof window!== 'undefined') {
+    return sessionStorage.getItem('token');}
+    return null;
   }
   getRole(): string | null {
-    return sessionStorage.getItem('role');
+    if (typeof window !== 'undefined') {
+    return sessionStorage.getItem('role');}
+    return null;
   }
   clearUserData() {
+    if (typeof window !== 'undefined') {
     sessionStorage.removeItem('userId');
     sessionStorage.removeItem('token');
-    sessionStorage.removeItem('role');
+    sessionStorage.removeItem('role');}
   }
 
   getUserById(userId: number, token: string): Observable<User> {
