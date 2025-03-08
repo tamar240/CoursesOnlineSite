@@ -1,0 +1,62 @@
+
+.home-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 40px;
+  }
+  
+
+  .hero {
+    background: url('../../assets/background.jpg') center/cover no-repeat;
+    color: white;
+    padding: 120px 20px;
+    width: 100%;
+    max-width: 800px;
+    border-radius: 15px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  .hero h1 {
+    font-size: 3.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .hero p {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    opacity: 0.9;
+  }
+  
+  .buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+  }
+  
+
+  .features {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 50px;
+    gap: 20px;
+  }
+  
+  .feature-card {
+    width: 280px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  }
+  
+  .feature-card mat-icon {
+    font-size: 3rem;
+    color: #1976d2;
+    margin-bottom: 10px;
+  }
+  h3{
+    font-weight: bolder;
+  }

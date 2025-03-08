@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
 
         next: (res) => {
           this.usersService.saveUserData(res.userId, res.token, res.role);
-          this.router.navigate(["/menu"]);
+          this.router.navigate(["/menu/home"]);
         },
         error: (err) => {
           console.error('Error:', err);
@@ -75,7 +75,7 @@ export class LoginComponent implements OnInit {
       this.usersService.register(name, email, password, role).subscribe({
         next: (res) => {
           this.usersService.saveUserData(res.userId, res.token, res.role)
-          this.router.navigate(["/menu"]);
+          this.router.navigate(["/menu/home"]);
         },
         error: (err) => {
           console.error('Error:', err);

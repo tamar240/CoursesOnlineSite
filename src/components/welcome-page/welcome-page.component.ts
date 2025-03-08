@@ -23,7 +23,7 @@ export class WelcomePageComponent {
     this.token = this.usersService.getToken()||"";
 
     if (this.token !="") {
-      this.router.navigate(['/menu']);
+      this.router.navigate(['/menu/home']);
     }
   }
   clickLogin() {

@@ -1,0 +1,155 @@
+/* הגדרת צבעים וסטיילים כלליים */
+:root {
+    --primary-color: #5e81ff; /* צבע כחול יפה */
+    --secondary-color: #f1f3f6; /* צבע רקע בהיר */
+    --button-hover-color: #4c70db; /* צבע כפתור בהאובר */
+    --border-color: #e1e8f0; /* גבול בהיר */
+    --text-color: #333; /* צבע טקסט כהה */
+}
+
+/* כללי */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f1f3f6; /* צבע רקע בהיר */
+    margin: 0;
+    padding: 0;
+    color: #333; /* צבע טקסט כהה */
+}
+
+/* כותרות */
+h3 {
+    font-size: 1.5rem;
+    color: #333; /* צבע טקסט כהה */
+    margin: 0 0 10px;
+}
+
+/* כרטיסים של שיעורים */
+.lesson-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px 0;
+    padding: 20px;
+    max-width: 500px;
+    width: 100%;
+}
+
+/* כפתור הוספה */
+button.add-new-lesson {
+    background-color: #5e81ff; /* צבע כחול יפה */
+    color: white;
+    font-size: 1rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    margin-top: 20px;
+}
+
+/* כפתור הוספה - אובר */
+button.add-new-lesson:hover {
+    background-color: #4c70db; /* צבע כפתור בהאובר */
+}
+
+/* טופס יצירה ועריכה */
+form {
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 500px;
+    margin: 20px 0;
+    position: sticky;
+    top: 20px;
+    z-index: 10; /* כדי להבטיח שהטופס יהיה מעל כרטיסי השיעורים */
+}
+
+/* שדה טופס */
+mat-form-field {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+mat-form-field mat-label {
+    color: #333; /* צבע טקסט כהה */
+}
+
+mat-form-field input,
+mat-form-field textarea {
+    font-size: 1rem;
+    color: #333; /* צבע טקסט כהה */
+}
+
+mat-form-field textarea {
+    resize: vertical;
+}
+
+/* כפתור של טופס */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.form-actions button {
+    background-color: #5e81ff; /* צבע כחול יפה */
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* אובר על כפתור של טופס */
+.form-actions button:hover {
+    background-color: #4c70db; /* צבע כפתור בהאובר */
+}
+
+.form-actions button:disabled {
+    background-color: #e1e8f0; /* גבול בהיר */
+    cursor: not-allowed;
+}
+
+/* כפתור עריכה ומחיקה בכרטיסי השיעורים */
+.lesson-card button {
+    background-color: #5e81ff; /* צבע כחול יפה */
+    border: none;
+    padding: 10px 20px;
+    color: #ffffff;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+/* אובר על כפתור עריכה ומחיקה */
+.lesson-card button:hover {
+    background-color: #4c70db; /* צבע כפתור בהאובר */
+}
+
+/* כפתור מחיקה */
+.lesson-card .lesson-actions button.delete {
+    background-color: #ff5c5c;
+}
+
+/* אובר על כפתור מחיקה */
+.lesson-card .lesson-actions button.delete:hover {
+    background-color: #ff3d3d;
+}
+
+/* כרטיסי שיעורים */
+.lesson-card p {
+    font-size: 1rem;
+    line-height: 1.6;
+    color: #333; /* צבע טקסט כהה */
+}
+
+/* פקדי פעולה בכרטיסי שיעורים */
+.lesson-card .lesson-actions {
+    margin-top: 20px;
+    display: flex;
+    justify-content: flex-start;
+    gap: 15px;
+}

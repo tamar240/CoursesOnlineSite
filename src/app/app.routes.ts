@@ -5,17 +5,19 @@ import { WelcomePageComponent } from '../components/welcome-page/welcome-page.co
 import { SingleCourseComponent } from '../components/single-course/single-course.component';
 import { UserCoursesComponent } from '../components/user-courses/user-courses.component';
 import { UpdataCourseComponent } from '../components/updata-course/updata-course.component';
-import { ShowCourseComponent } from '../components/show-course/show-course.component';
+import { ShowCourseComponent } from '../components/show-all-course/show-course.component';
 import { TeacherCoursesComponent } from '../components/teacher-courses/teacher-courses.component';
 import { LessonsComponent } from '../components/lessons/lessons.component';
 import { AddCourseComponent } from '../components/add-course/add-course.component';
+import { HomePageComponent } from '../components/home-page/home-page.component';
 
 export const routes: Routes = [
     { path: '', component: WelcomePageComponent },
     { path: 'login', component: LoginComponent }
     ,
     {
-        path: 'menu', component: MenuComponent, children: [ // תפריט קבוע
+        path: 'menu', component: MenuComponent, children: [ 
+            { path: 'home', component: HomePageComponent },
             { path: 'showCourses', component: ShowCourseComponent },
             { path: 'course/:id', component: SingleCourseComponent },
             { path: 'yourCourse', component: UserCoursesComponent },

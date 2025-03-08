@@ -1,37 +1,35 @@
-@for(l of lessons;track lessons){
-    <div style="border: 2px solid rgb(253, 194, 213); margin: 30px;width: fit-content;padding: 20px;">
-    <h3>{{l.title}}</h3>
-    <p>{{l.content}}</p>
-    {{l.id}}
-    <button >edit</button>
-    <button (click)="deleteLesson(l.id)">delete</button>
+<!-- כפתור הוספה -->
+<button class="btn-add" (click)="openForm = !openForm">Add New Lesson</button>
+
+@if(openForm) {
+  <form [formGroup]="lessonForm" (ngSubmit)="onSubmit()" class="lesson-form">
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Lesson Name</mat-label>
+      <input matInput formControlName="title" required class="input-field">
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Content</mat-label>
+      <textarea matInput formControlName="content" rows="3" class="input-field"></textarea>
+    </mat-form-field>
+
+    <div class="form-actions">
+      <button mat-raised-button color="primary" type="submit" class="btn-submit">
+        {{ isEditMode ? 'Update Lesson' : 'Add Lesson' }}
+      </button>
+    </div>
+  </form>
+}
+
+<div class="lesson-cards-container">
+  @for(l of lessons;track lessons) {
+    <div class="lesson-card">
+      <h3 class="lesson-title">{{ l.title }}</h3>
+      <p class="lesson-content">{{ l.content }}</p>
+      <div class="lesson-actions">
+        <button class="btn-edit" (click)="openUpdateFormHandler(l)">Edit</button>
+        <button class="btn-delete" (click)="deleteLesson(l.id)">Delete</button>
+      </div>
+    </div>
+  }
 </div>
-}
-<button (click)="openForm=!openForm">add new lesson</button>
-@if(openForm)
-{
-    <form [formGroup]="lessonForm" (ngSubmit)="addLesson()">
-
-        <mat-form-field appearance="fill">
-            <mat-label>lesson name </mat-label>
-            <input matInput formControlName="title" required>
-            <!-- @if(lessonForm.get('title')?.hasError('required'))
-            { <mat-error>
-           course name is required
-            </mat-error>} -->
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-            <mat-label>content course </mat-label>
-            <textarea matInput formControlName="content" rows="3"></textarea>
-        </mat-form-field>
-
-        <div class="form-actions">
-            <button mat-raised-button color="primary" type="submit" >
-               add lesson
-            </button>
-        </div>
-    </form>
-
-
-}

@@ -14,6 +14,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { HttpClient } from '@angular/common/http';
+import { CapitalizeFirstPipe } from "../../pipes/capitalize-first.pipe";
 @Component({
   selector: 'app-single-course',
   standalone: true,
@@ -24,7 +25,9 @@ import { HttpClient } from '@angular/common/http';
     MatIconModule,
     MatIconModule,
     MatExpansionModule,
-    MatIcon],
+    MatIcon,
+    CapitalizeFirstPipe
+],
   templateUrl: './single-course.component.html',
   styleUrl: './single-course.component.css'
 })
@@ -34,17 +37,13 @@ export class SingleCourseComponent {
   lessons: Lesson[] = [];
   teacher: User | undefined;
   token: string = "";
-  materials = [
-    { name: 'Introductory presentation', url: 'https://docs.google.com/document/d/1JMxkkmjlj9I26_w-mcWrPcPOhDo_Tupo/edit?usp=drive_link&ouid=101005488638334548080&rtpof=true&sd=true' },
-    { name: "Exercise booklet", url: 'https://docs.google.com/document/d/1JMxkkmjlj9I26_w-mcWrPcPOhDo_Tupo/edit?usp=drive_link&ouid=101005488638334548080&rtpof=true&sd=true' }
-  ];
+
   constructor(
     private route: ActivatedRoute,
     private lessonsService: LessonsService,
     private coursesService: CoursesService,
     private usersService: UsersService,
     private router: Router,
-    private http: HttpClient
   ) { }
 
   ngOnInit(): void {
@@ -100,20 +99,7 @@ export class SingleCourseComponent {
   goBack() {
     this.router.navigate(['/menu/showCourses']);
   }
-  downloadMaterial(material: { name: string; url: string }) {
-    this.http.get(material.url, { responseType: 'blob' }).subscribe(blob => {
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = material.name;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
-    }, (error: any) => {
-      console.error('שגיאה בהורדת הקובץ:', error);
-    });
-  }
+  
 
 }
 

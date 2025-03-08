@@ -3,3 +3,19 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+button{
+    background-color:#70aba6; /* צבע כחול יפה */
+    border: none;
+    padding: 10px 20px;
+    color: #ffffff;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    margin: 2px;
+}
+
+/* אובר על כפתור עריכה ומחיקה */
+button:hover {
+    background-color: #96e1ff; /* צבע כפתור בהאובר */
+}

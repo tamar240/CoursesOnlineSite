@@ -4,7 +4,7 @@
 }
 
 mat-toolbar {
-  background-color: #032f41;
+  background-color: #206b89;
   color: white;
   font-size: 1.2em;
 }
@@ -108,7 +108,7 @@ html, body {
   padding: 0;
   height: 100%;
   width: 100%;
-  overflow: hidden; /* חוסם גלילה מיותרת */
+  overflow: hidden; 
 }
 
 .example-container {
@@ -149,5 +149,5 @@ button[mat-raised-button] {
   font-size: 16px;
   font-weight: bold;
   color: #ffffff;
-  background-color: #20ffe5;
+  background-color: #53e3d7;
 }

@@ -13,7 +13,7 @@ h1 {
 }
 
 .highlight {
-    color: #007bff;
+    color: #70aba6;
     font-weight: bold;
 }
 
@@ -23,7 +23,7 @@ p {
 }
 
 button {
-    background-color: #007bff;
+    background-color:#70aba6;
     color: white;
     border: none;
     padding: 12px 20px;
@@ -34,7 +34,7 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color:#70aba6;
 }
 .centered-card {
     width: 80%;

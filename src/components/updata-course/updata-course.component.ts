@@ -86,19 +86,28 @@ export class UpdataCourseComponent implements OnInit {
   }
 
   updateCourse() {
-    const title = this.courseForm.value.title;
-    const content = this.courseForm.value.content;
+    if (this.courseForm.invalid)
+      alert('Please fill out all fields');
 
-    const course: Course = new Course(this.courseId, title, content, this.theacherId);
-    this.coursesService.updateCourse(this.courseId, course, this.token).subscribe({
-      next: () => {
-        alert('Course updated successfully!');
-        this.router.navigate(['/menu/teacherCourse']);
-      },
-      error: (error: any) => {
-        console.error('Error updating course:', error);
-      }
-    });
+    else {
+      const title = this.courseForm.value.title;
+      const description = this.courseForm.value.description;
+
+      const course: Course = new Course(this.courseId, title, description, this.theacherId);
+
+
+      this.coursesService.updateCourse(this.courseId, course, this.token).subscribe({
+
+        next: () => {
+
+          alert('Course updated successfully!');
+          this.router.navigate(['/menu/teacherCourse']);
+        },
+        error: (error: any) => {
+          console.error('Error updating course:', error);
+        }
+      });
+    }
   }
 
 

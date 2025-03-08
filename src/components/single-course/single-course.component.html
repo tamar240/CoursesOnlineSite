@@ -13,7 +13,7 @@
         <mat-card-subtitle>{{ course.description }}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-        <p><strong>teacher: </strong>{{ teacher?.name }}</p>
+        <p><strong>teacher: </strong>{{ teacher!.name | capitalizeFirst }}</p>
         <mat-divider></mat-divider>
         <h3>lessons:</h3>
         <mat-accordion>
@@ -31,19 +31,7 @@
             </mat-expansion-panel>
             }
         </mat-accordion>
-        <div>
-            <h3>Downloadable materials:</h3>
-            <mat-list>
-              @for ( material of materials; track $index) {
-                <mat-list-item>
-                  <button mat-button class="download-button" (click)="downloadMaterial(material)">
-                    <mat-icon>cloud_download</mat-icon>
-                    {{ material.name }}
-                  </button>
-                </mat-list-item>
-              }
-            </mat-list>
-          </div>
+    
           
     </mat-card-content>
 </mat-card>

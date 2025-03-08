@@ -7,7 +7,7 @@
   
   .course-card {
     position: relative;
-    width: 300px;
+    width: 380px;
     padding: 15px;
     border-radius: 10px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
@@ -23,7 +23,7 @@
   }
   
   h3 {
-    margin-top: 30px;
+    margin-top: 80px;
     font-size: 18px;
     color: #3f51b5;
   }

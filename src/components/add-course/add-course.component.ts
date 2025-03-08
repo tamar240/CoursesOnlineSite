@@ -5,6 +5,7 @@ import { MatCard, MatCardTitle } from '@angular/material/card';
 import { MatError, MatFormField, MatLabel } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { UsersService } from '../../services/users.service';
+import { MatIcon } from '@angular/material/icon';
 
 @Component({
   selector: 'app-add-course',
@@ -15,7 +16,8 @@ import { UsersService } from '../../services/users.service';
     , MatLabel,
     MatError,
     ReactiveFormsModule
-    , MatInputModule],
+    , MatInputModule,
+    MatIcon],
   templateUrl: './add-course.component.html',
   styleUrl: './add-course.component.css'
 })
@@ -33,8 +35,11 @@ export class AddCourseComponent {
   }
 
   addCourse() {
-    if (this.courseForm.valid) {
+    if (this.courseForm.invalid)
+      alert('Please fill out all fields');
 
+
+    else {
       const token = this.userService.getToken() || "";
       const bady = this.courseForm.value;
 
@@ -43,15 +48,20 @@ export class AddCourseComponent {
         next: (cresponse: { courseId: number }) => {
           alert("the course added succsecfull")
           this.courseForm.reset();
+          window.history.back();
         },
         error: (error) => {
           console.error('error in ad', error);
         }
       });
     }
+
   }
 
   resetForm() {
     this.courseForm.reset();
+  }
+  goBack() {
+    window.history.back();
   }
 }

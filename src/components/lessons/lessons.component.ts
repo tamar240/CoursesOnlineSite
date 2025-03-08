@@ -10,6 +10,7 @@ import { MatInputModule } from '@angular/material/input';
 @Component({
   selector: 'app-lessons',
   standalone: true,
+   styleUrl: './lessons.component.css',
   imports: [
     MatInputModule,
     MatLabel,
@@ -18,13 +19,15 @@ import { MatInputModule } from '@angular/material/input';
     , MatInputModule
   ],
   templateUrl: './lessons.component.html',
-  styleUrl: './lessons.component.css'
+ 
 })
 export class LessonsComponent {
   courseId: number = 0;
   lessons: Lesson[] = [];
   token: string = '';
   openForm: boolean = false;
+  isEditMode: boolean = false;  // Flag for edit mode
+  currentLessonId: number | null = null;  // Current lesson id for editing
   lessonForm!: FormGroup;
 
   constructor(
@@ -32,9 +35,7 @@ export class LessonsComponent {
     private lessonsService: LessonsService,
     private usersService: UsersService,
     private fb: FormBuilder
-  ) {
-
-  }
+  ) { }
 
   ngOnInit() {
     this.lessonForm = this.fb.group({
@@ -56,59 +57,84 @@ export class LessonsComponent {
         this.lessons = lessons;
       },
       error: (error) => {
-        console.error('erorr in get the lessons', error);
+        console.error('Error loading lessons', error);
       }
     });
   }
 
+  openUpdateFormHandler(lesson: Lesson): void {
+    this.isEditMode = true;  // Set to edit mode
+    this.currentLessonId = lesson.id;  // Set the current lesson id
+    this.lessonForm.setValue({
+      title: lesson.title,
+      content: lesson.content
+    });
+    this.openForm = true;  // Open the form for editing
+  }
+
+  onSubmit() {
+    if (this.lessonForm.invalid) {
+      alert('Please fill out all fields');
+      return;
+    }
+  
+    if (this.isEditMode) {
+      this.updateLesson();
+    } else {
+      this.addLesson();
+    }
+  }
 
   addLesson() {
-    const bady = this.lessonForm?.value;
+    const body = this.lessonForm?.value;
 
-    this.lessonsService.createLesson(this.courseId, bady, this.token).subscribe({
-
+    this.lessonsService.createLesson(this.courseId, body, this.token).subscribe({
       next: () => {
-        alert('the lesson added successfully');
+        alert('Lesson added successfully');
         this.lessonForm.reset();
         this.openForm = false;
         this.loadLessons();
       },
       error: (error) => {
-        console.error('erorr in added lesson', error);
+        console.error('Error adding lesson', error);
         alert('An error occurred while adding the lesson.');
       }
     });
   }
 
-  updateLesson(lessonId: number, lessonData: { title: string; content: string }): void {
+  updateLesson() {
+    const lesson = {
+       id: this.currentLessonId,
+      title: this.lessonForm.value.title,
+      content: this.lessonForm.value.content
+    };
 
-    const updatedLesson = new Lesson(this.courseId, lessonData.title, lessonData.content);
-
-    this.lessonsService.updateLesson(this.courseId, lessonId, updatedLesson, this.token).subscribe({
+    this.lessonsService.updateLesson(this.courseId, this.currentLessonId!, lesson, this.token).subscribe({
       next: () => {
-        alert('the lesson updated successfully');
+        alert('Lesson updated successfully');
         this.loadLessons();
+        this.openForm = false;
+        this.lessonForm.reset();
+        this.isEditMode = false;
+        this.currentLessonId = null;
       },
       error: (error) => {
-        console.error('erorr in update lesson', error);
+        console.error('Error updating lesson', error);
         alert('An error occurred while updating the lesson.');
       }
     });
   }
 
   deleteLesson(lessonId: number): void {
-
     this.lessonsService.deleteLesson(this.courseId, lessonId, this.token).subscribe({
       next: () => {
-        alert('The lesson was successfully deleted.');
+        alert('Lesson deleted successfully');
         this.loadLessons();
       },
       error: (error) => {
-        console.error('Error: Lesson deletion failed', error);
-        alert('Error: Lesson deletion failed.');
+        console.error('Error deleting lesson', error);
+        alert('Error deleting lesson');
       }
-
-    })
+    });
   }
 }
-
