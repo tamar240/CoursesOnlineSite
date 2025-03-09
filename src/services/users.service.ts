@@ -36,8 +36,6 @@ export class UsersService {
 
   getUserId(): number | null {
     if (typeof window!== 'undefined') {
-      
-
     const userId = sessionStorage.getItem('userId');
     return userId ? parseInt(userId, 10) : null;}
     return null;
@@ -54,7 +52,8 @@ export class UsersService {
     return null;
   }
   clearUserData() {
-    if (typeof window !== 'undefined') {
+    if (typeof window !== 'undefined') 
+      {
     sessionStorage.removeItem('userId');
     sessionStorage.removeItem('token');
     sessionStorage.removeItem('role');}
